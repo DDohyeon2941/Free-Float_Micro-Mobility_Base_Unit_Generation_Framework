@@ -9,7 +9,6 @@ import user_utils as uu
 import pandas as pd
 import numpy as np
 from sklearn.metrics import mean_absolute_percentage_error as mape, mean_absolute_error as mae, mean_squared_error as mse
-import matplotlib.pyplot as plt
 from scipy import stats
 
 save_date = '0812'
@@ -106,44 +105,13 @@ print(stats.ttest_rel(result_dic_mape['fixed'], result_dic_mape['prop']))
 print(stats.ttest_rel(result_dic_smape['fixed'], result_dic_smape['prop']))
 print(stats.ttest_rel(result_dic_smape0['fixed'], result_dic_smape0['prop']))
 
-#final_df.groupby(['group','metric','type']).mean()['score'].loc['750m'].unstack()
-
-
-
-
-
 
 final_df = pd.concat([rmse_df, mae_df, mape_df, smape_df, smape0_df]).reset_index(drop=True)
 
 #%%
 new_final_df = final_df.loc[final_df['type']=='fixed'][['metric','try','group','score']]
-#final_df.to_csv(r'kansas_prediction_performance_750m_prop_all_sep_ovl_0812_groupby.csv')
 
 
 #%%
 
 pd.concat([final_df.loc[final_df['type']=='fixed'][['metric','try','group','score']], new_final_df]).reset_index(drop=True).to_csv(r'minneapolis_prediction_performance_250m_750m_0812.csv')
-
-
-
-
-
-
-
-
-
-pd.concat([final_df.loc[final_df['type']=='fixed'][['metric','try','group','score']], new_final_df]).reset_index(drop=True).groupby(['metric','group']).mean()['score'].unstack().T[['rmse','mae','mape','smape','smape0']].to_csv(r'kansas_prediction_performance_250m_750m_prop_all_sep_ovl_0812_groupby.csv')
-
-
-
-
-
-
-
-
-
-
-
-
-
-

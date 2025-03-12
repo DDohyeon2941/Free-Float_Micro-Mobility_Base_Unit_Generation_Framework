@@ -9,7 +9,6 @@ import user_utils as uu
 import pandas as pd
 import numpy as np
 from sklearn.metrics import mean_absolute_percentage_error as mape, mean_absolute_error as mae, mean_squared_error as mse
-import matplotlib.pyplot as plt
 from scipy import stats
 
 save_date = '0812'
@@ -259,15 +258,16 @@ sep_smape0_df.columns = ['metric','try','group','type','score']
 ovl_smape0_df = pd.concat([pd.DataFrame(data={'metric':['smape0',]*10, 'try':np.repeat(np.arange(5),2),'group':['ovl',]*10}), pd.DataFrame(data=ovl_result_dic_smape0).stack().reset_index()[['level_1',0]]], axis=1)
 ovl_smape0_df.columns = ['metric','try','group','type','score']
 
-### cocnat
+### cocnat and save
 
-#pd.concat([rmse_df, mae_df, mape_df, smape_df, smape0_df,sep_rmse_df, ovl_rmse_df, sep_mae_df, ovl_mae_df, sep_mape_df, ovl_mape_df, sep_smape_df, ovl_smape_df,  sep_smape0_df, ovl_smape0_df]).reset_index(drop=True).to_csv(r'minneapolis_prediction_performance_500m_prop_all_sep_ovl_0812_rev.csv', index=False)
+pd.concat([rmse_df, mae_df, mape_df, smape_df, smape0_df,sep_rmse_df, ovl_rmse_df, sep_mae_df, ovl_mae_df, sep_mape_df, ovl_mape_df, sep_smape_df, ovl_smape_df,  sep_smape0_df, ovl_smape0_df]).reset_index(drop=True).to_csv(r'minneapolis_prediction_performance_500m_prop_all_sep_ovl_0812_rev.csv', index=False)
 
 
 ###final
 final_df = pd.concat([rmse_df, mae_df, mape_df, smape_df, smape0_df,sep_rmse_df, ovl_rmse_df, sep_mae_df, ovl_mae_df, sep_mape_df, ovl_mape_df, sep_smape_df, ovl_smape_df,  sep_smape0_df, ovl_smape0_df]).reset_index(drop=True)
 
-#final_df.groupby(['group','metric','type']).mean()['score'].unstack(1)[['rmse','mae','mape','smape','smape0']].to_csv(r'minneapolis_prediction_performance_500m_prop_all_sep_ovl_0812_groupby_rev.csv')
+###final save
+final_df.groupby(['group','metric','type']).mean()['score'].unstack(1)[['rmse','mae','mape','smape','smape0']].to_csv(r'minneapolis_prediction_performance_500m_prop_all_sep_ovl_0812_groupby_rev.csv')
 
 
 ### check statistics
@@ -287,27 +287,6 @@ print(stats.ttest_rel(ovl_result_dic_smape['fixed'], ovl_result_dic_smape['prop'
 
 print(stats.ttest_rel(sep_result_dic_smape0['fixed'], sep_result_dic_smape0['prop']))
 print(stats.ttest_rel(ovl_result_dic_smape0['fixed'], ovl_result_dic_smape0['prop']))
-
-
-#%%
-
-
-train_df = uu.load_gpickle(r'%s_prop_train_test_scaler_dataset_%s.pickle'%('minneapolis', '0810'))['train_dataset']
-train_df_fixed = uu.load_gpickle(r'%s_fixed_train_test_scaler_dataset_%s.pickle'%('minneapolis', '0810'))['train_dataset']
-
-
-np.sort(np.array([uni_df.loc[uni_df['demand']==0].shape[0] / uni_df.shape[0] for _, uni_df in train_df.groupby(['level_2'])]))
-
-
-np.sort(np.array([uni_df.loc[uni_df['demand']==0].shape[0] / uni_df.shape[0] for _, uni_df in train_df_fixed.groupby(['level_2'])]))
-
-
-
-plt.plot(np.sort(np.array([uni_df.loc[uni_df['demand']==0].shape[0] / uni_df.shape[0] for _, uni_df in train_df.groupby(['level_2'])]))), plt.plot(np.sort(np.array([uni_df.loc[uni_df['demand']==0].shape[0] / uni_df.shape[0] for _, uni_df in train_df_fixed.groupby(['level_2'])])),ls='--')
-
-np.mean([uni_df.loc[uni_df['demand']==0].shape[0] / uni_df.shape[0] for _, uni_df in uu.load_gpickle(r'%s_prop_train_test_scaler_dataset_%s.pickle'%('minneapolis', '0810'))['test_dataset'].groupby(['level_2'])])
-
-
 
 
 
