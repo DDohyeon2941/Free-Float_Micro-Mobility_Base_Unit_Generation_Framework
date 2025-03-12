@@ -31,3 +31,9 @@ The proposed framework was **compared against traditional grid-based methods** (
 - **Reduction in extreme demand values**: The framework stabilizes the distribution, reducing both excessive zero-demand areas and extreme rental spikes.  
 - **Improved prediction performance**: Particularly in spatial units that previously suffered from MAUP-related bias.  
 - **Validation across different cities**: The framework's effectiveness is demonstrated across Kansas City and Minneapolis, showcasing adaptability to different urban environments.  
+
+## **Contributing**
+We welcome contributions to this project. Please submit pull requests or open issues for any bugs or enhancements.
+
+## **Citation**
+For more details, please refer to the full paper on [IEEE ACCESS]([https://ieeexplore.ieee.org/document/10705154](https://doi.org/10.1049/itr2.12596)).
