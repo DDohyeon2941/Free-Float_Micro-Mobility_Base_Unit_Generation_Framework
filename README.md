@@ -36,4 +36,4 @@ The proposed framework was **compared against traditional grid-based methods** (
 We welcome contributions to this project. Please submit pull requests or open issues for any bugs or enhancements.
 
 ## **Citation**
-For more details, please refer to the full paper on [IEEE ACCESS]([https://ieeexplore.ieee.org/document/10705154](https://doi.org/10.1049/itr2.12596)).
+For more details, please refer to the full paper on [IET Intelligent Transport Systems](https://doi.org/10.1049/itr2.12596).
