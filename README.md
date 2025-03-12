@@ -1,4 +1,3 @@
-Here's a draft for your GitHub project's README file based on the uploaded paper:  
 # Enhanced Base Unit Generation Framework for Micro-Mobility Demand Prediction  
 
 ## 📌 Overview  
