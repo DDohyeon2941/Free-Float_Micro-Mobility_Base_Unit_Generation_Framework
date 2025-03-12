@@ -1,4 +1,0 @@
-1. 작성일: 2023-06-01
-2. 대여기록: https://opendata.minneapolismn.gov/datasets/cityoflakes::motorized-foot-scooter-trips-2022/explore
-3. street shp: https://opendata.minneapolismn.gov/datasets/mpls-centerline/explore?location=44.968586%2C-93.288978%2C14.66
-4. wards shp: https://opendata.minneapolismn.gov/datasets/cityoflakes::wards-2002/explore?location=44.976914%2C-93.225979%2C12.74
