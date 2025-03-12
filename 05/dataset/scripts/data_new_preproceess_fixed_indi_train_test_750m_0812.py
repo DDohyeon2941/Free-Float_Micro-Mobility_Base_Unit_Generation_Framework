@@ -80,7 +80,7 @@ def prep_base_df(all_info, is_train=True):
     return test2
 
 if __name__ == '__main__':
-    temp_pkl = pd.read_pickle(r'kansas_500m_4b_45c_dataset_0809.pkl')
+    temp_pkl = pd.read_pickle(r'roughly_filtered_dataset_750m_0615.pkl')
     
     train_df = prep_base_df(temp_pkl, True)
     test_df = prep_base_df(temp_pkl, False)
@@ -95,7 +95,7 @@ if __name__ == '__main__':
     train_df.loc[:, 'scaled_y'] = scaler.transform(train_df[target_col].values.reshape(-1,1)).squeeze()
     test_df.loc[:, 'scaled_y'] = scaler.transform(test_df[target_col].values.reshape(-1,1)).squeeze()
     
-    uu.save_gpickle(r'kansas_fixed_train_test_scaler_dataset_0730.pickle', {'scaler':scaler, 'train_dataset':train_df, 'test_dataset':test_df})
+    uu.save_gpickle(r'kansas_fixed_train_test_scaler_dataset_750m_0812.pickle', {'scaler':scaler, 'train_dataset':train_df, 'test_dataset':test_df})
     
 
 

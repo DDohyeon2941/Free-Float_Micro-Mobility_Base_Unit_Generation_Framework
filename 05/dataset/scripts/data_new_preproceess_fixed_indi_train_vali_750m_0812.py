@@ -11,14 +11,14 @@ from datetime import date, timedelta
 import itertools
 import pendulum
 from sklearn.preprocessing import MinMaxScaler
-import data_new_preproceess_fixed_indi_train_test_0730 as pu
+import data_new_preproceess_fixed_indi_train_test_750m_0812 as pu
 
 import user_utils as uu
 
 
 
 def split_train_vali(train_info, vali_days):
-    train_days = np.arange(1,23)
+    train_days = np.arange(1,22)
     print(train_days)
     print(vali_days)
 
@@ -48,19 +48,22 @@ def conv_tup_to_dic(uni_tup):
 
 if __name__ == '__main__':
 
-    temp_pkl = pd.read_pickle(r'kansas_500m_4b_45c_dataset_0809.pkl')
+    temp_pkl = pd.read_pickle(r'roughly_filtered_dataset_750m_0615.pkl')
     train_df = pu.prep_base_df(temp_pkl, True)
     
     
     train_vali_dic = {}
     
-    train_vali_dic[1] = conv_tup_to_dic(get_splited_df_scaler(train_df, [23, 24, 25]))
-    train_vali_dic[2] = conv_tup_to_dic(get_splited_df_scaler(train_df, [26, 27, 28]))
-    train_vali_dic[3] = conv_tup_to_dic(get_splited_df_scaler(train_df, [29, 30, 31]))
+    train_vali_dic[1] = conv_tup_to_dic(get_splited_df_scaler(train_df, [22, 23, 24, 25]))
+    train_vali_dic[2] = conv_tup_to_dic(get_splited_df_scaler(train_df, [24, 25, 26, 27]))
+    train_vali_dic[3] = conv_tup_to_dic(get_splited_df_scaler(train_df, [26, 27, 28, 29]))
+    train_vali_dic[4] = conv_tup_to_dic(get_splited_df_scaler(train_df, [28, 29, 30, 31]))
+
+
 
 
     #%%
-    uu.save_gpickle(r'kansas_fixed_train_valid_12345_scaler_dataset_0730.pickle', train_vali_dic)
+    uu.save_gpickle(r'kansas_fixed_train_valid_12345_scaler_dataset_750m_0812.pickle', train_vali_dic)
     
 
     

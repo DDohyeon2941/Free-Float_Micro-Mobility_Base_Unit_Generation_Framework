@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Jun 17 15:19:41 2023
+Created on Tue Jan  3 13:32:49 2023
 
 @author: dohyeon
 """
-
 
 import pandas as pd
 import numpy as np
@@ -42,7 +41,9 @@ def get_base_df(is_train=True):
 
 def get_demand_df(all_info, is_train=True):
     """실험기간내 최소 time step별 대여량 df 생성"""
-    SEL_COLS = ['start_date','hour','start_grid']
+    global NUM_BASE_UNIT
+    SEL_COLS = ['start_date','hour','final_new_mask']
+
     if is_train:
         train_info = all_info.loc[(all_info.start_month==7)].reset_index(drop=True)
     else:
@@ -51,6 +52,7 @@ def get_demand_df(all_info, is_train=True):
     demand_df = train_info.groupby(SEL_COLS).count()['year'].unstack(fill_value=0)
     new_demand_df = pd.DataFrame(index=demand_df.index, columns=np.arange(demand_df.shape[1]), data=0)
     new_demand_df.loc[demand_df.index, np.arange(demand_df.shape[1])] = demand_df.values
+
     return new_demand_df
 
 def prep_base_df(all_info, is_train=True):
@@ -79,15 +81,16 @@ def prep_base_df(all_info, is_train=True):
 
     test2['demand'] = np.log(test2['demand']+1)
     return test2
-#%%
+
 if __name__ == '__main__':
-    temp_pkl = pd.read_pickle(r'roughly_filtered_dataset_250m_0615.pkl')
+    temp_pkl = pd.read_pickle(r'kansas_500m_4b_45c_dataset_0809.pkl')
 
     train_df = prep_base_df(temp_pkl, True)
     test_df = prep_base_df(temp_pkl, False)
     
     target_col = 'demand'
     #%%
+    
     scaler=MinMaxScaler()
     
     scaler.fit(train_df[target_col].values.reshape(-1,1))
@@ -95,14 +98,7 @@ if __name__ == '__main__':
     train_df.loc[:, 'scaled_y'] = scaler.transform(train_df[target_col].values.reshape(-1,1)).squeeze()
     test_df.loc[:, 'scaled_y'] = scaler.transform(test_df[target_col].values.reshape(-1,1)).squeeze()
     
-    uu.save_gpickle(r'kansas_fixed_train_test_scaler_dataset_250m_0730.pickle', {'scaler':scaler, 'train_dataset':train_df, 'test_dataset':test_df})
+    uu.save_gpickle(r'kansas_prop_train_test_scaler_dataset_0810.pickle', {'scaler':scaler, 'train_dataset':train_df, 'test_dataset':test_df})
     
-
-
-
-
-
-
-
 
 

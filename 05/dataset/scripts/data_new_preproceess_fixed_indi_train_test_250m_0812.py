@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Jun 17 15:19:41 2023
+Created on Tue Jan  3 13:32:49 2023
 
 @author: dohyeon
 """
-
 
 import pandas as pd
 import numpy as np
@@ -79,15 +78,16 @@ def prep_base_df(all_info, is_train=True):
 
     test2['demand'] = np.log(test2['demand']+1)
     return test2
-#%%
-if __name__ == '__main__':
-    temp_pkl = pd.read_pickle(r'roughly_filtered_dataset_750m_0615.pkl')
 
+if __name__ == '__main__':
+    temp_pkl = pd.read_pickle(r'roughly_filtered_dataset_250m_0615.pkl')
+    
     train_df = prep_base_df(temp_pkl, True)
     test_df = prep_base_df(temp_pkl, False)
     
     target_col = 'demand'
     #%%
+    
     scaler=MinMaxScaler()
     
     scaler.fit(train_df[target_col].values.reshape(-1,1))
@@ -95,14 +95,7 @@ if __name__ == '__main__':
     train_df.loc[:, 'scaled_y'] = scaler.transform(train_df[target_col].values.reshape(-1,1)).squeeze()
     test_df.loc[:, 'scaled_y'] = scaler.transform(test_df[target_col].values.reshape(-1,1)).squeeze()
     
-    uu.save_gpickle(r'kansas_fixed_train_test_scaler_dataset_750m_0730.pickle', {'scaler':scaler, 'train_dataset':train_df, 'test_dataset':test_df})
-
-
-
-
-
-
-
-
+    uu.save_gpickle(r'kansas_fixed_train_test_scaler_dataset_250m_0812.pickle', {'scaler':scaler, 'train_dataset':train_df, 'test_dataset':test_df})
+    
 
 
