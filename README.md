@@ -40,7 +40,6 @@ Free-Float_Micro-Mobility_Base_Unit_Generation_Framework/
 └── 예측성능_20240816.xlsx # 예측 성능 결과 파일
 ```
 
-이 내용을 **README.md**에 추가하면 프로젝트 구조를 한눈에 파악하기 쉽고, 협업 및 유지보수에도 도움이 될 것입니다. 🚀
 ## 🚀 Features  
 - **MAUP-Aware Areal Unit Definition**: Generates dynamic spatial units that mitigate biases caused by arbitrary grid-based divisions.  
 - **Spatiotemporal Clustering**: Merges areas with similar demand patterns while maintaining geographic continuity.  
