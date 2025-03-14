@@ -5,6 +5,42 @@ This project presents an **enhanced base unit generation framework** for demand 
 
 The framework leverages **spatiotemporal clustering** to refine the areal unit definitions, ensuring that they align with real-world demand patterns while improving **prediction performance** in micro-mobility demand forecasting. The approach is validated using **shared e-scooter datasets from Kansas City and Minneapolis**.  
 
+
+### 📂 **디렉토리 설명**
+- **Kansas/** 및 **minneapolis/**: 각각 캔자스 시티와 미니애폴리스를 위한 데이터 및 분석 코드가 포함된 디렉토리입니다.
+  - **analysis/**: 분석 및 시각화 관련 코드와 데이터가 포함되어 있습니다.
+  - **dataset/**: 원본 데이터 및 전처리된 데이터가 포함된 디렉토리입니다.
+  - **experiment/**: 실험 관련 코드와 설정이 포함된 디렉토리입니다.
+  - **results/**: 실험 결과 및 분석 결과를 저장하는 디렉토리입니다.
+  - **run_scripts/** (Kansas만 존재): 실행 관련 스크립트가 포함된 디렉토리입니다.
+  - **spatial_units/**: 공간 단위 관련 데이터 및 분석 코드가 포함된 디렉토리입니다.
+  - **utils/**: 공통적으로 사용되는 유틸리티 함수 및 보조 코드가 포함된 디렉토리입니다.
+```
+Free-Float_Micro-Mobility_Base_Unit_Generation_Framework/
+├── Kansas/
+│   ├── analysis/          # 분석 관련 코드 및 데이터
+│   ├── dataset/           # 캔자스 시티 데이터셋
+│   ├── experiment/        # 실험 관련 코드 및 설정
+│   ├── results/           # 실험 결과 저장
+│   ├── run_scripts/       # 실행 스크립트
+│   ├── spatial_units/     # 공간 단위 관련 데이터 및 코드
+│   ├── utils/             # 유틸리티 함수 및 공통 코드
+│
+├── minneapolis/
+│   ├── analysis/          # 분석 관련 코드 및 데이터
+│   ├── dataset/           # 미니애폴리스 데이터셋
+│   ├── experiment/        # 실험 관련 코드 및 설정
+│   ├── results/           # 실험 결과 저장
+│   ├── spatial_units/     # 공간 단위 관련 데이터 및 코드
+│   ├── utils/             # 유틸리티 함수 및 공통 코드
+│
+├── .gitattributes         # Git 속성 파일
+├── README.md              # 프로젝트 소개 및 가이드
+├── maup.yml               # MAUP 관련 설정 파일
+└── 예측성능_20240816.xlsx # 예측 성능 결과 파일
+```
+
+이 내용을 **README.md**에 추가하면 프로젝트 구조를 한눈에 파악하기 쉽고, 협업 및 유지보수에도 도움이 될 것입니다. 🚀
 ## 🚀 Features  
 - **MAUP-Aware Areal Unit Definition**: Generates dynamic spatial units that mitigate biases caused by arbitrary grid-based divisions.  
 - **Spatiotemporal Clustering**: Merges areas with similar demand patterns while maintaining geographic continuity.  
